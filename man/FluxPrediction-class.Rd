@@ -27,7 +27,7 @@ of the optimization problem.}
 \item{\code{obj}}{Objective value.}
 
 \item{\code{obj_sec}}{Value of secondary objective function. E.g.: Summed absolute
-fluxes in \link{pfba}.}
+fluxes in \link{parsimonious_flux_balance_analysis}.}
 
 \item{\code{fluxes}}{Predicted flux values.}
 

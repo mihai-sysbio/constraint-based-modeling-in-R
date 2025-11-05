@@ -1,6 +1,8 @@
-#' Parsimonious Flux Balance Analysis (pFBA)
+#' Parsimonious flux balance analysis (pFBA)
 #'
-#' Performs parsimonious FBA as describe by Lewis et al. 2010.
+#' Matches the naming convention used by cobrapy's
+#' `parsimonious_flux_balance_analysis()` while keeping the
+#' original \code{pfba()} helper for backward compatibility.
 #'
 #' @param model Model of class \link{ModelOrg}
 #' @param costcoeffw,costcoefbw A numeric vector containing cost coefficients
@@ -18,11 +20,12 @@
 #' computed optimal growth from genome‐scale models,” Molecular Systems Biology,
 #' vol. 6, no. 1. EMBO, Jan. 2010. doi: 10.1038/msb.2010.47.
 #'
-#' @seealso [pfbaHeuristic()]
+#' @seealso [pfba_heuristic()]
 #'
 #' @family Flux prediction algorithms
 #' @export
-pfba <- function(model, costcoeffw = NULL, costcoefbw = NULL) {
+parsimonious_flux_balance_analysis <- function(model, costcoeffw = NULL,
+                                                costcoefbw = NULL) {
 
   if(!is.null(costcoeffw) && !is.numeric(costcoeffw))
     stop("Argument 'costcoeffw' must be a numeric vector")
@@ -179,4 +182,13 @@ pfba <- function(model, costcoeffw = NULL, costcoefbw = NULL) {
              fluxes = lp_fluxes,
              redCosts = redCosts))
 
+}
+
+#' @rdname parsimonious_flux_balance_analysis
+#' @export
+pfba <- function(model, costcoeffw = NULL, costcoefbw = NULL) {
+  .Deprecated("parsimonious_flux_balance_analysis", package = "cobrar")
+  parsimonious_flux_balance_analysis(model,
+                                     costcoeffw = costcoeffw,
+                                     costcoefbw = costcoefbw)
 }

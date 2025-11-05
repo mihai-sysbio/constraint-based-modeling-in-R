@@ -115,7 +115,7 @@ rmReact <- function(model, react, rm_met = TRUE) {
 #'
 #' @examples
 #' fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-#' mod <- readSBMLmod(fpath)
+#' mod <- read_sbml_model(fpath)
 #' mod
 #'
 #' # create a double gene knock-out mutant
@@ -184,7 +184,7 @@ rmGene <- function(model, gene, rm_react = TRUE, rm_met = TRUE) {
 #'
 #' @examples
 #' fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-#' mod <- readSBMLmod(fpath)
+#' mod <- read_sbml_model(fpath)
 #'
 #' # Simulate anaerobic growth
 #' mod <- changeBounds(mod, "EX_o2_e", lb = 0)
@@ -372,9 +372,9 @@ rmConstraint <- function(model, ind) {
 #' # This example adds the 4-aminobutyrate degradation pathway to the E. coli
 #' # core metabolic model
 #' fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-#' mod <- readSBMLmod(fpath)
+#' mod <- read_sbml_model(fpath)
 #'
-#' fba(mod)
+#' optimize_model(mod)
 #'
 #' # 4abut transport: 4abut_e + h_e <=> 4abut_c + h_c
 #' mod <- addReact(mod, id = "ABUTt", Scoef = c(-1,-1,1,1),
@@ -412,7 +412,7 @@ rmConstraint <- function(model, ind) {
 #'
 #' printReaction(mod, "SSALx")
 #'
-#' fba(mod)
+#' optimize_model(mod)
 #'
 #' @export
 addReact <- function(model,
@@ -797,7 +797,7 @@ addGene <- function(model, id, name = NA, CVTerms = NA,
 #'
 #' @examples
 #' fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-#' mod <- readSBMLmod(fpath)
+#' mod <- read_sbml_model(fpath)
 #' mod <- addCompartment(mod, id = "p", name = "periplasm")
 #'
 #' @export
@@ -895,7 +895,7 @@ rmCompartment <- function(model, comp) {
 #'
 #' @examples
 #' fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-#' mod <- readSBMLmod(fpath)
+#' mod <- read_sbml_model(fpath)
 #' mod <- addSubsystem(mod, id = "Bifidoshunt",
 #'                     name = "glucose fermentation to acetate and lactate (Bifidobacteria)")
 #'

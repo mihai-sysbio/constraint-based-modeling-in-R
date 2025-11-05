@@ -20,7 +20,7 @@ function to update the compartment's name.
 }
 \examples{
 fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-mod <- readSBMLmod(fpath)
+mod <- read_sbml_model(fpath)
 mod <- addCompartment(mod, id = "p", name = "periplasm")
 
 }

@@ -2,9 +2,12 @@
 % Please edit documentation in R/io.R
 \name{writeSBMLmod}
 \alias{writeSBMLmod}
+\alias{write_sbml_model}
 \title{Exports a Metabolic Network in SBML Format}
 \usage{
 writeSBMLmod(model, file_path = NULL)
+
+write_sbml_model(model, file_path = NULL)
 }
 \arguments{
 \item{model}{Model of class \link{ModelOrg}}

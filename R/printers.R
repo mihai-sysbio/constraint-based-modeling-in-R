@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-#' mod <- readSBMLmod(fpath)
+#' mod <- read_sbml_model(fpath)
 #' # print reaction specified by index
 #' printReaction(mod, react = 2)
 #' # print reaction specified by ID
