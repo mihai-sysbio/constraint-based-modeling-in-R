@@ -6,9 +6,18 @@
 NULL
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("cobrar uses...\n",
-                        " - libSBML (v. ", getSBMLVersion(),")\n",
-                        " - glpk (v. ",getGLPKVersion(),")")
+  msg <- paste0("cobrar uses...\n",
+                " - libSBML (v. ", getSBMLVersion(),")\n",
+                " - glpk (v. ", getGLPKVersion(),")")
+
+  if (requireNamespace("gurobi", quietly = TRUE)) {
+    msg <- paste0(msg,
+                  "\n - gurobi (R pkg v. ",
+                  as.character(utils::packageVersion("gurobi")),
+                  ")")
+  }
+
+  packageStartupMessage(msg)
 }
 
 .COBRARenv <- new.env()
@@ -29,12 +38,13 @@ NULL
   )
 
   # solvers
-  .COBRARenv$solvers <- c("glpk") # hopefully IBM's cplex soon
+  .COBRARenv$solvers <- c("glpk", "gurobi") # hopefully IBM's cplex soon
 
 
   # methods
   .COBRARenv$solverMethods <- list(
-    glpk = c("simplex", "interior", "exact", "mip")
+    glpk = c("simplex", "interior", "exact", "mip"),
+    gurobi = c("auto", "primal", "dual", "barrier", "mip")
   )
 
   # default parameters
@@ -44,6 +54,12 @@ NULL
                 interior = as.data.frame(NA),
                 exact    = as.data.frame(NA),
                 mip      = as.data.frame(NA)
+    ),
+    gurobi = list(auto    = as.data.frame(NA),
+                  primal  = as.data.frame(NA),
+                  dual    = as.data.frame(NA),
+                  barrier = as.data.frame(NA),
+                  mip     = as.data.frame(NA)
     )
   )
 

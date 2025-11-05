@@ -16,7 +16,8 @@ Depends:
 License: GPL (>= 3)
 SystemRequirements:
     libSBML (>= 5.16),
-    GLPK (>= 4.65)
+    GLPK (>= 4.65),
+    optional: Gurobi Optimizer (>= 9.0)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
@@ -36,6 +37,7 @@ Collate:
     'FluxPredictionClass.R'
     'LPproblemClass.R'
     'LPproblem_glpkClass.R'
+    'LPproblem_gurobiClass.R'
     'ModelOrgClass.R'
     'ModelCommClass.R'
     'RcppExports.R'

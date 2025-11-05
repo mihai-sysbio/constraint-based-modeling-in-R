@@ -117,6 +117,7 @@ reference:
       - solveLp
       - LPproblem-class
       - LPproblem_glpk-class
+      - LPproblem_gurobi-class
 
 articles:
 - title: Tutorials

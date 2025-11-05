@@ -2,7 +2,7 @@
 #'
 #' A class structure to link LP problem C++ object.
 #'
-#' @slot ptr External pointer to LP problem C++ object
+#' @slot ptr External pointer to LP problem C++ object or other solver handle
 #' @slot solver Solver used for the LP problem
 #' @slot method Specific algorithm used by the LP solver
 #' @slot tol_bnd Numeric value determining how closely the solution must
@@ -13,7 +13,7 @@
 #' @exportClass LPproblem
 setClass("LPproblem",
          slots = c(
-           ptr = "externalptr",
+           ptr = "ANY",
            solver = "character",
            method = "character",
            tol_bnd = "numeric"
