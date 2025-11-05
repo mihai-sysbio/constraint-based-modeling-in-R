@@ -11,7 +11,7 @@ A class structure to link LP problem C++ object.
 \section{Slots}{
 
 \describe{
-\item{\code{ptr}}{External pointer to LP problem C++ object}
+\item{\code{ptr}}{External pointer to LP problem C++ object or other solver handle}
 
 \item{\code{solver}}{Solver used for the LP problem}
 
