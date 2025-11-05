@@ -1,28 +1,32 @@
-#' Flux Variability Analysis (FVA)
+#' Flux variability analysis
 #'
-#' Perform Flux Variability Analysis with or without relaxed optimality
-#' constraint
+#' Provides a snake_case function name consistent with cobrapy's
+#' `flux_variability_analysis()` helper while keeping the original
+#' \code{fva()} entry point available for backward compatibility.
 #'
 #' @param model Model of class \link{ModelOrg}
 #' @param react Character vector of reaction IDs tested for flux variability. If
 #' NULL, all reactions are tested.
 #' @param opt.factor Numeric value > 0 to define the required fraction of the
-#' objective function value. E.g. 0.8 sets the constraint, that in the flux
+#' objective function value. E.g. 0.8 sets the constraint that in the flux
 #' variability analysis, the objective function value must at least be 80% of
 #' the original optimal value.
 #'
 #' @examples
 #' fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-#' mod <- readSBMLmod(fpath)
+#' mod <- read_sbml_model(fpath)
 #'
 #' # Get flux variability for all exchange reactions
-#' fvares <- fva(mod, react = mod@react_id[grepl("^EX_",mod@react_id)],
-#'               opt.factor = 0.9)
+#' fvares <- flux_variability_analysis(
+#'   mod,
+#'   react = mod@react_id[grepl("^EX_", mod@react_id)],
+#'   opt.factor = 0.9
+#' )
 #' fvares
 #'
 #' @family Flux prediction algorithms
 #' @export
-fva <- function(model, react = NULL, opt.factor = 1) {
+flux_variability_analysis <- function(model, react = NULL, opt.factor = 1) {
 
   if(is.null(react) || length(react) == 0)
     react <- 1:react_num(model)
@@ -109,4 +113,11 @@ fva <- function(model, react = NULL, opt.factor = 1) {
   deleteLP(LPprob)
 
   return(res)
+}
+
+#' @rdname flux_variability_analysis
+#' @export
+fva <- function(model, react = NULL, opt.factor = 1) {
+  .Deprecated("flux_variability_analysis", package = "cobrar")
+  flux_variability_analysis(model = model, react = react, opt.factor = opt.factor)
 }

@@ -1,7 +1,8 @@
-#' Identify dead end metabolites
+#' Identify dead-end metabolites
 #'
-#' Searches a metabolic network for metabolites that can be produced but not
-#' consumed, and vice versa.
+#' Provides a snake_case alias to better mirror cobrapy's
+#' `find_dead_ends()` helper while keeping the original
+#' \code{deadEndMetabolites()} for backward compatibility.
 #'
 #' @param object Model of class \link{ModelOrg}
 #'
@@ -11,8 +12,8 @@
 #'
 #' @examples
 #' fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-#' mod <- readSBMLmod(fpath)
-#' deadEndMetabolites(mod)
+#' mod <- read_sbml_model(fpath)
+#' find_dead_end_metabolites(mod)
 #'
 #' @note
 #' The algorithm is adapted from the original 'sybil' package, which in turn is
@@ -23,7 +24,7 @@
 #' the direction RHS to LHS (lower bound > 0 and upper bound = 0).
 #'
 #' @export
-deadEndMetabolites <- function(object) {
+find_dead_end_metabolites <- function(object) {
 
   St <- object@S
   LBt <- object@lowbnd
@@ -68,4 +69,11 @@ deadEndMetabolites <- function(object) {
   der <- object@react_id[der]
 
   return(list(dem = dem, der = der))
+}
+
+#' @rdname find_dead_end_metabolites
+#' @export
+deadEndMetabolites <- function(object) {
+  .Deprecated("find_dead_end_metabolites", package = "cobrar")
+  find_dead_end_metabolites(object)
 }

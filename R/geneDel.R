@@ -1,7 +1,7 @@
 #' Identify reactions affected by gene knockouts
 #'
-#' This function identifies reactions, which cannot be catalyzed anymore when
-#' a specified set of genes is deleted from a model.
+#' Aligns with cobrapy's `find_gene_knockout_reactions()` helper while
+#' retaining the original \code{geneDel()} alias for backward compatibility.
 #'
 #' @param model Model of class \link{ModelOrg}
 #' @param gene Character or numeric vector providing the IDs or indices of genes
@@ -10,7 +10,7 @@
 #' @return Character vector with reactions IDs.
 #'
 #' @export
-geneDel <- function(model, gene) {
+find_gene_knockout_reactions <- function(model, gene) {
 
   # check if provides gene values are valid
   if(any(!checkGeneId(model, gene = gene))) {
@@ -36,4 +36,11 @@ geneDel <- function(model, gene) {
   }))
 
   return(model@react_id[!reactCata])
+}
+
+#' @rdname find_gene_knockout_reactions
+#' @export
+geneDel <- function(model, gene) {
+  .Deprecated("find_gene_knockout_reactions", package = "cobrar")
+  find_gene_knockout_reactions(model, gene)
 }

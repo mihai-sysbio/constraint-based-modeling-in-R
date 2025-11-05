@@ -27,7 +27,7 @@ reactions and metabolites inaccessible after gene knock outs.
 }
 \examples{
 fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-mod <- readSBMLmod(fpath)
+mod <- read_sbml_model(fpath)
 mod
 
 # create a double gene knock-out mutant

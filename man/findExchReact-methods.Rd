@@ -3,6 +3,7 @@
 \docType{methods}
 \name{findExchReact}
 \alias{findExchReact}
+\alias{get_exchange_reactions}
 \alias{findExchReact,ModelOrg-method}
 \alias{findExchReact,ModelOrg}
 \alias{findExchReact,ModelComm-method}
@@ -14,6 +15,8 @@ findExchReact(model)
 \S4method{findExchReact}{ModelOrg}(model)
 
 \S4method{findExchReact}{ModelComm}(model)
+
+get_exchange_reactions(model)
 }
 \arguments{
 \item{model}{Model of class \link{ModelOrg} or \link{ModelComm}}
@@ -28,6 +31,7 @@ latter are exchange reactions, that connect extracellular metabolites of the
 organism metabolic network models with the shared extracellular space.
 }
 \description{
-Finds all exchange reactions within a (community) model and report them in a
-data frame.
+Provides a convenience alias \code{get_exchange_reactions()} that mirrors
+cobrapy's helper naming while keeping the existing S4 generic
+\code{findExchReact()} available.
 }

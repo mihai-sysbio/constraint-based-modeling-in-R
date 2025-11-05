@@ -96,9 +96,9 @@ added.
 # This example adds the 4-aminobutyrate degradation pathway to the E. coli
 # core metabolic model
 fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-mod <- readSBMLmod(fpath)
+mod <- read_sbml_model(fpath)
 
-fba(mod)
+optimize_model(mod)
 
 # 4abut transport: 4abut_e + h_e <=> 4abut_c + h_c
 mod <- addReact(mod, id = "ABUTt", Scoef = c(-1,-1,1,1),
@@ -136,6 +136,6 @@ mod <- addReact(mod, id = "SSALx", Scoef = c(-1,-1,-1,2,1,1),
 
 printReaction(mod, "SSALx")
 
-fba(mod)
+optimize_model(mod)
 
 }

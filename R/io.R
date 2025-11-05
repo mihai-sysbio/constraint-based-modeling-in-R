@@ -1,12 +1,15 @@
 #' Reads an SBML file and constructs an object of class 'ModelOrg'
 #'
+#' Adds a snake_case alias \code{read_sbml_model()} to mirror cobrapy's API
+#' while keeping the original \code{readSBMLmod()} helper available.
+#'
 #' @param file_path Path to SBML file.
 #'
 #' @returns A \link{ModelOrg-class} object.
 #'
 #' @examples
 #' fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-#' mod <- readSBMLmod(fpath)
+#' mod <- read_sbml_model(fpath)
 #' mod
 #'
 #' @import Matrix
@@ -135,6 +138,12 @@ readSBMLmod <- function(file_path) {
   )
 }
 
+#' @rdname readSBMLmod
+#' @export
+read_sbml_model <- function(file_path) {
+  readSBMLmod(file_path)
+}
+
 
 # Small helpter function to transform an SBO Term to it's integer als ID
 sboterm2int <- function(sbo) {
@@ -145,6 +154,9 @@ sboterm2int <- function(sbo) {
 #'
 #' Export a constraint-based metabolic network model from a S4 object of class
 #' \link{ModelOrg} to a SBML file.
+#'
+#' Provides the snake_case alias \code{write_sbml_model()} consistent with
+#' cobrapy's API while retaining \code{writeSBMLmod()}.
 #'
 #' @param model Model of class \link{ModelOrg}
 #' @param file_path SBML file name for exporting the model. Default is the
@@ -328,6 +340,12 @@ writeSBMLmod <- function(model, file_path = NULL) {
   }
 
   return(out)
+}
+
+#' @rdname writeSBMLmod
+#' @export
+write_sbml_model <- function(model, file_path = NULL) {
+  writeSBMLmod(model, file_path = file_path)
 }
 
 

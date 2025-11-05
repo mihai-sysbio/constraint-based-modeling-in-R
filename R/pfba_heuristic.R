@@ -1,7 +1,7 @@
-#' Heuristic parsimonious Flux Balance Analysis (pFBA)
+#' Heuristic parsimonious flux balance analysis (pFBA)
 #'
-#' Performs a heuristic version of the parsimonious FBA algorithm. See
-#' details.
+#' Provides a snake_case alias that mirrors cobrapy's helper naming while
+#' keeping the original \code{pfbaHeuristic()} function available.
 #'
 #' @param model Model of class \link{ModelOrg}
 #' @param costcoeffw,costcoefbw A numeric vector containing cost coefficients
@@ -52,8 +52,8 @@
 #'
 #' @family Flux prediction algorithms
 #' @export
-pfbaHeuristic <- function(model, costcoeffw = NULL, costcoefbw = NULL,
-                          pFBAcoeff = 1e-6) {
+pfba_heuristic <- function(model, costcoeffw = NULL, costcoefbw = NULL,
+                           pFBAcoeff = 1e-6) {
 
   if(!is.null(costcoeffw) && !is.numeric(costcoeffw))
     stop("Argument 'costcoeffw' must be a numeric vector")
@@ -151,4 +151,15 @@ pfbaHeuristic <- function(model, costcoeffw = NULL, costcoefbw = NULL,
              fluxes = lp_fluxes,
              redCosts = redCosts[1:nc]))
 
+}
+
+#' @rdname pfba_heuristic
+#' @export
+pfbaHeuristic <- function(model, costcoeffw = NULL, costcoefbw = NULL,
+                          pFBAcoeff = 1e-6) {
+  .Deprecated("pfba_heuristic", package = "cobrar")
+  pfba_heuristic(model,
+                 costcoeffw = costcoeffw,
+                 costcoefbw = costcoefbw,
+                 pFBAcoeff = pFBAcoeff)
 }

@@ -46,7 +46,7 @@ their effects are:\tabular{clc}{
 }
 \examples{
 fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-mod <- readSBMLmod(fpath)
+mod <- read_sbml_model(fpath)
 
 # Simulate anaerobic growth
 mod <- changeBounds(mod, "EX_o2_e", lb = 0)

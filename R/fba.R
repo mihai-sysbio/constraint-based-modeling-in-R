@@ -1,28 +1,33 @@
-#' Flux Balance Analysis
+#' Optimize a model with flux balance analysis
 #'
-#' Performs basic flux balance analysis (fba)
+#' Provides a user-facing name that mirrors
+#' [cobrapy](https://opencobra.github.io/cobrapy/)'s
+#' [`Model.optimize()`](https://opencobra.github.io/cobrapy/build/html/model.html#cobra.core.model.Model.optimize)
+#' entry point while keeping the original function available for
+#' backward compatibility.
 #'
 #' @param model Model of class \link{ModelOrg}
 #'
-#' @returns A list with flux predictions (reaction fluxes 'fluxes', reduced costs 'redCosts'), and optimization status ()
+#' @returns A \link{FluxPrediction-class} object with the predicted reaction
+#' fluxes, reduced costs, objective value, and solver status information.
 #'
 #' @examples
 #' fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-#' mod <- readSBMLmod(fpath)
+#' mod <- read_sbml_model(fpath)
 #'
 #' # aerobic growth
-#' res_aero <- fba(mod)
+#' res_aero <- optimize_model(mod)
 #' cat(" Growth rate:       ", res_aero@obj,"\n",
 #'     "Acetate production:", res_aero@fluxes[mod@react_id == "EX_ac_e"],"\n")
 #'
 #' mod <- changeBounds(mod, react = "EX_o2_e", lb = 0) # before: -1000
-#' res_anaero <- fba(mod)
+#' res_anaero <- optimize_model(mod)
 #' cat(" Growth rate:       ", res_anaero@obj,"\n",
 #'     "Acetate production:", res_anaero@fluxes[mod@react_id == "EX_ac_e"],"\n")
 #'
 #' @family Flux prediction algorithms
 #' @export
-fba <- function(model) {
+optimize_model <- function(model) {
 
   #----------------------------------------------------------------------------#
   # Initializing and defining LP problem                                       #
@@ -81,5 +86,12 @@ fba <- function(model) {
              obj_sec = NA_real_,
              fluxes = lp_fluxes,
              redCosts = redCosts))
+}
+
+#' @rdname optimize_model
+#' @export
+fba <- function(model) {
+  .Deprecated("optimize_model", package = "cobrar")
+  optimize_model(model)
 }
 

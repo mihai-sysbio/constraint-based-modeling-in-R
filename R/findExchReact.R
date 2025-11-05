@@ -1,7 +1,8 @@
 #' Find exchange reactions
 #'
-#' Finds all exchange reactions within a (community) model and report them in a
-#' data frame.
+#' Provides a convenience alias \code{get_exchange_reactions()} that mirrors
+#' cobrapy's helper naming while keeping the existing S4 generic
+#' \code{findExchReact()} available.
 #'
 #' @param model Model of class \link{ModelOrg} or \link{ModelComm}
 #'
@@ -68,3 +69,9 @@ setMethod("findExchReact", signature(model = "ModelComm"),
                               lb = model@lowbnd[c(ex_pos,mex_pos)],
                               ub = model@uppbnd[c(ex_pos,mex_pos)]))
           })
+
+#' @rdname findExchReact-methods
+#' @export
+get_exchange_reactions <- function(model) {
+  findExchReact(model)
+}

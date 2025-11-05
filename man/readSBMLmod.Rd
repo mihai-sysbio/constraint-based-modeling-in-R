@@ -2,9 +2,12 @@
 % Please edit documentation in R/io.R
 \name{readSBMLmod}
 \alias{readSBMLmod}
+\alias{read_sbml_model}
 \title{Reads an SBML file and constructs an object of class 'ModelOrg'}
 \usage{
 readSBMLmod(file_path)
+
+read_sbml_model(file_path)
 }
 \arguments{
 \item{file_path}{Path to SBML file.}
@@ -17,7 +20,7 @@ Reads an SBML file and constructs an object of class 'ModelOrg'
 }
 \examples{
 fpath <- system.file("extdata", "e_coli_core.xml", package="cobrar")
-mod <- readSBMLmod(fpath)
+mod <- read_sbml_model(fpath)
 mod
 
 }
